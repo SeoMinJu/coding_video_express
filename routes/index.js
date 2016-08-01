@@ -93,4 +93,27 @@ exports.view = function(req, res) {
 	});
 };
 	
+// login
+exports.login = function(req, res){
+	res.render('login');
+};
 		
+exports.signin = function(req, res){
+	var user = {
+		username : 'egoing',
+		password: '111',
+		displayName : 'Egoing'
+	};
+	var uname = req.body.username;
+	var pwd = req.body.password;
+	
+	if( uname == user.username && pwd == user.password) {
+		req.session.displayName = user.displayName;
+		//res.send('hello master');
+		res.redirect('/welcome');
+	}
+	else {
+		res.send('who are you <a href="/auth/login">login</a>');
+	}
+	
+};
